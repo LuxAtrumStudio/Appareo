@@ -1,0 +1,4 @@
+#ifndef APPAREO_FILES_CURSE_INPUT_H_
+#define APPAREO_FILES_CURSE_INPUT_H_
+
+#endif

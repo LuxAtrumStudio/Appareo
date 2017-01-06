@@ -1,0 +1,4 @@
+#ifndef APPAREO_FILES_CURSE_WINDOW_H_
+#define APPAREO_FILES_CURSE_WINDOW_H_
+
+#endif
