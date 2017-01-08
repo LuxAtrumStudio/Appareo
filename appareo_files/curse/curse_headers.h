@@ -1,0 +1,5 @@
+#include "curse_core.h"
+#include "form.h"
+#include "output.h"
+#include "window.h"
+#include "menu.h"
