@@ -52,8 +52,10 @@ tar: clean
 .PHONY : lib
 lib: all
 	ar rcs lib$(PROGRAM_NAME).a $(TOTAL_OBJ_FILES)
-	sudo cp lib$(PROGRAM_NAME).a ../../../../usr/local/lib/ -u
-	sudo cp */*.h *.h ../../../../usr/local/include/ -u
+	sudo cp lib$(PROGRAM_NAME).a /usr/local/lib/ -u
+	sudo cp appareo_files/*.h /usr/local/include/appareo_files/ -u
+	sudo cp appareo_files/curse/*.h /usr/local/include/appareo_files/curse/ -u
+	sudo cp appareo_files/induco/*.h /usr/local/include/appareo_files/induco/ -u
 	clear
 	@echo Compiled lib file, and copied to usr/local/lib
 

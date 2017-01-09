@@ -111,8 +111,8 @@ void appareo::curse::out::InitializeColor() {
   }
 }
 
-void appareo::curse::out::SetAtt(std::vector<Attributes> attrs) {
-  wattrset(windows[boundwin].windowpointer, A_NORMAL);
+void appareo::curse::out::SetAtt(std::vector<Attributes> attrs, int window) {
+  wattrset(windows[window].windowpointer, A_NORMAL);
   int color = -1;
   for (int i = 0; i < attrs.size(); i++) {
     if (attrs[i] > 10 && attrs[i] < 19) {
@@ -126,31 +126,31 @@ void appareo::curse::out::SetAtt(std::vector<Attributes> attrs) {
       }
       color += (attrs[i] - 19) * 10;
     } else if (attrs[i] == 0) {
-      wattron(windows[boundwin].windowpointer, A_NORMAL);
+      wattron(windows[window].windowpointer, A_NORMAL);
     } else if (attrs[i] == 1) {
-      wattron(windows[boundwin].windowpointer, A_STANDOUT);
+      wattron(windows[window].windowpointer, A_STANDOUT);
     } else if (attrs[i] == 2) {
-      wattron(windows[boundwin].windowpointer, A_UNDERLINE);
+      wattron(windows[window].windowpointer, A_UNDERLINE);
     } else if (attrs[i] == 3) {
-      wattron(windows[boundwin].windowpointer, A_REVERSE);
+      wattron(windows[window].windowpointer, A_REVERSE);
     } else if (attrs[i] == 4) {
-      wattron(windows[boundwin].windowpointer, A_BLINK);
+      wattron(windows[window].windowpointer, A_BLINK);
     } else if (attrs[i] == 5) {
-      wattron(windows[boundwin].windowpointer, A_DIM);
+      wattron(windows[window].windowpointer, A_DIM);
     } else if (attrs[i] == 6) {
-      wattron(windows[boundwin].windowpointer, A_BOLD);
+      wattron(windows[window].windowpointer, A_BOLD);
     } else if (attrs[i] == 7) {
-      wattron(windows[boundwin].windowpointer, A_PROTECT);
+      wattron(windows[window].windowpointer, A_PROTECT);
     } else if (attrs[i] == 8) {
-      wattron(windows[boundwin].windowpointer, A_INVIS);
+      wattron(windows[window].windowpointer, A_INVIS);
     } else if (attrs[i] == 9) {
-      wattron(windows[boundwin].windowpointer, A_ALTCHARSET);
+      wattron(windows[window].windowpointer, A_ALTCHARSET);
     } else if (attrs[i] == 10) {
-      wattron(windows[boundwin].windowpointer, A_CHARTEXT);
+      wattron(windows[window].windowpointer, A_CHARTEXT);
     }
   }
   if (color != -1) {
-    wattron(windows[boundwin].windowpointer, COLOR_PAIR(color));
+    wattron(windows[window].windowpointer, COLOR_PAIR(color));
   }
   refresh();
 }

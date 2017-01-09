@@ -1,13 +1,55 @@
-#include "induco.h"
 #include <cmath>
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include "../curse/curse_headers.h"
-
+#include "induco.h"
+namespace appareo {
 namespace induco {
 struct termios t;
 clock_t start;
+int barwin = 0, lastbar = 0;
+}
+}
+
+void appareo::induco::CreateProgressBar(std::string name) {
+  curse::InitializeWindow();
+  curse::win->CreateWindow(name, curse::scrwidth / 2, 3, -1, -1, true, true);
+  barwin = curse::windows.size() - 1;
+  lastbar = -1;
+}
+
+void appareo::induco::UpdateProgressBar(double percent) {
+  std::string bar = "";
+  percent *= 100;
+  double worth = 100.0 / (double)(curse::windows[barwin].width - 2);
+  for (int i = 0; i * worth < percent; i++) {
+    bar += " ";
+  }
+  if (lastbar != bar.size()) {
+    std::string perc = std::to_string(percent);
+    int col = (curse::windows[barwin].width - perc.size()) / 2;
+    lastbar = bar.size();
+    curse::out::SetAtt({curse::out::WHITE_BACK}, barwin);
+    curse::out::Print(bar, 1, 1, barwin);
+    for(int i = 0; i < perc.size(); i++){
+      if(col > bar.size() + 1){
+      curse::out::SetAtt({curse::out::NORMAL}, barwin);
+      }
+      std::stringstream ss;
+      ss << perc[i];
+      std::string sch;
+      ss >> sch;
+      curse::out::Print(sch, 1, col, barwin);
+      col++;
+    }
+  }
+}
+
+void appareo::induco::TerminateProgressBar() {
+  curse::windows[barwin].TerminateWindow();
+  curse::windows.erase(curse::windows.begin() + barwin);
 }
 
 std::string appareo::induco::DisplayTime(double elapsed, bool unit) {
@@ -75,7 +117,8 @@ std::string appareo::induco::DisplayTime(double elapsed, bool unit) {
   return (line);
 }
 
-std::string appareo::induco::DisplayDate(int timesec, bool disptime, bool dispyear) {
+std::string appareo::induco::DisplayDate(int timesec, bool disptime,
+                                         bool dispyear) {
   time_t duedate = timesec;
   std::string duedatestr = "";
   duedatestr = ctime(&duedate);
