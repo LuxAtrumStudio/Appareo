@@ -1,7 +1,6 @@
 #ifndef APPAREO_FILES_CURSE_FORM_H_
 #define APPAREO_FILES_CURSE_FORM_H_
 #include <ncurses.h>
-#include <pessum_headers.h>
 #include <vector>
 #include "curse_headers.h"
 namespace appareo {

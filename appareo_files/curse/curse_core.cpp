@@ -1,9 +1,7 @@
 #include <ncurses.h>
-#include <pessum_headers.h>
+#include <pessum.h>
 #include <vector>
-#include "curse_core.h"
-#include "output.h"
-#include "window.h"
+#include "curse_headers.h"
 
 namespace appareo {
 namespace curse {
@@ -49,8 +47,12 @@ void appareo::curse::Frame() {
 void appareo::curse::InitializeWindow() {
   Window newwindow;
   windows.push_back(newwindow);
-  out::BindWindow(windows.size() - 1);
   win = &windows[windows.size() - 1];
+}
+
+void appareo::curse::TerminateWindow(int window){
+  windows[window].TerminateWindow();
+  windows.erase(windows.begin() + window);
 }
 
 int appareo::curse::FindWindow(std::string name) {
@@ -63,4 +65,38 @@ int appareo::curse::FindWindow(std::string name) {
                           "No window named \"" + name + "\"", logloc,
                           "FindWindow");
   return (0);
+}
+
+std::vector<std::string> appareo::curse::NewMenu(
+    std::vector<std::string> options, std::string name, int width,
+    int height, int posx, int posy, bool multi) {
+  std::vector<std::string> output;
+  Menu newmenu;
+  newmenu.CreateMenu(options, name, width, height, posx, posy, multi);
+  output = newmenu.RunMenu();
+  newmenu.TerminateMenu();
+  return (output);
+}
+
+std::vector<std::string> appareo::curse::NewMenu(
+    std::vector<std::vector<std::string>> options, std::string name,
+    int width, int height, int posx, int posy,
+    bool multi) {
+  std::vector<std::string> output;
+  Menu newmenu;
+  newmenu.CreateMenu(options, name, width, height, posx, posy, multi);
+  output = newmenu.RunMenu();
+  newmenu.TerminateMenu();
+  return (output);
+}
+
+std::vector<appareo::curse::Field> appareo::curse::NewForm(std::vector<Field> fields,
+                                           std::string name,
+                                           int width, int height,
+                                           int posx, int posy) {
+  Form newform;
+  newform.CreateForm(fields, name,width, height, posx, posy);
+  fields = newform.RunForm();
+  newform.TerminateForm();
+  return (fields);
 }

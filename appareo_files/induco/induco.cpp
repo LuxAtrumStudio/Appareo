@@ -45,6 +45,7 @@ void appareo::induco::UpdateProgressBar(double percent) {
       col++;
     }
   }
+  curse::out::SetAtt({curse::out::NORMAL}, barwin);
 }
 
 void appareo::induco::TerminateProgressBar() {
@@ -141,4 +142,10 @@ double appareo::induco::Timer(bool startb) {
     return (elapsedtime);
   }
   return (0);
+}
+
+void appareo::induco::Line(int pos, bool vertical){
+  if(vertical == false){
+    
+  }
 }

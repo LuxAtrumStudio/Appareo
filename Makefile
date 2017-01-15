@@ -4,7 +4,7 @@ TOTAL_OBJ_FILES = $(wildcard */*.o) $(wildcard */*/*.o) $(wildcard */*/*/*.o)
 HEADER_FILES = $(wildcard *.h) $(wildcard */*.h) $(wildcard */*/*.h) $(wildcard */*/*/*.h)
 CC = clang++
 COMPILER_FLAGS = -MMD -std=c++11 -w -c
-LINKER_FLAGS = -lform -lncurses -laequus
+LINKER_FLAGS = -lncurses -laequus
 PROGRAM_NAME = appareo
 
 all: subsystem top_obj $(PROGRAM_NAME)

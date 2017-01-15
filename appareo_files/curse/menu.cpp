@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <pessum.h>
 #include "curse_headers.h"
 
 void appareo::curse::Menu::CreateMenu(std::vector<std::string> options,
@@ -59,12 +60,21 @@ std::vector<std::string> appareo::curse::Menu::RunMenu() {
     int input = wgetch(menuwin.windowpointer);
     if (input == KEY_UP && currentrow > 0) {
       currentrow--;
+      if(currentcol >= menuoptions[currentrow].size()){
+        currentcol = menuoptions[currentrow].size() - 1;
+      }
     }
     if (input == KEY_DOWN && currentrow < menuoptions.size() - 1) {
       currentrow++;
+      if(currentcol >= menuoptions[currentrow].size()){
+        currentcol = menuoptions[currentrow].size() - 1;
+      }
     } else if (input == KEY_DOWN && currentrow == menuoptions.size() - 1 &&
                multiselect == true) {
       currentrow++;
+      if(currentcol >= menuoptions[currentrow].size()){
+        currentcol = menuoptions[currentrow].size() - 1;
+      }
     }
     if (input == KEY_LEFT && currentcol > 0) {
       currentcol--;

@@ -1,5 +1,5 @@
 #include <ncurses.h>
-#include <pessum_headers.h>
+#include <pessum.h>
 #include <string>
 #include "curse_core.h"
 #include "window.h"

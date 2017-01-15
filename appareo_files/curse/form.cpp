@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <pessum.h>
 #include "curse_headers.h"
 
 void appareo::curse::Form::CreateForm(std::vector<Field> fields,

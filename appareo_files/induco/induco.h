@@ -21,6 +21,8 @@ std::string DisplayDate(int timesec, bool disptime = false,
                         bool dispyear = false);
 // Starts or stops a timmer with accuracy to us
 double Timer(bool startb = false);
+
+void Line(int pos, bool vertical);
 }
 }
 #endif
