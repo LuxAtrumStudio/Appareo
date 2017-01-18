@@ -5,19 +5,20 @@
 namespace appareo {
 namespace curse {
 class Window {
- public:
+public:
   std::string name;
-  WINDOW* windowpointer;
+  WINDOW *windowpointer;
   int cursx, cursy;
   int width, height, posx, posy;
   bool title, border;
-  void CreateWindow(std::string winname = "", int winwidth = -1, int winheight = -1,
-                    int winposx = -1, int winposy = -1, bool winborder = true,
-                    bool wintitle = false);
+  void CreateWindow(std::string winname = "", int winwidth = -1,
+                    int winheight = -1, int winposx = -1, int winposy = -1,
+                    bool winborder = true, bool wintitle = false);
   void TerminateWindow();
   void Update();
   void Clear();
- private:
+
+private:
   int logloc;
   std::string GenName();
 };

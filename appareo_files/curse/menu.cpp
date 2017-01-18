@@ -1,9 +1,9 @@
+#include "curse_headers.h"
 #include <ncurses.h>
+#include <pessum.h>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <pessum.h>
-#include "curse_headers.h"
 
 void appareo::curse::Menu::CreateMenu(std::vector<std::string> options,
                                       std::string name, int width, int height,
@@ -60,19 +60,19 @@ std::vector<std::string> appareo::curse::Menu::RunMenu() {
     int input = wgetch(menuwin.windowpointer);
     if (input == KEY_UP && currentrow > 0) {
       currentrow--;
-      if(currentcol >= menuoptions[currentrow].size()){
+      if (currentcol >= menuoptions[currentrow].size()) {
         currentcol = menuoptions[currentrow].size() - 1;
       }
     }
     if (input == KEY_DOWN && currentrow < menuoptions.size() - 1) {
       currentrow++;
-      if(currentcol >= menuoptions[currentrow].size()){
+      if (currentcol >= menuoptions[currentrow].size()) {
         currentcol = menuoptions[currentrow].size() - 1;
       }
     } else if (input == KEY_DOWN && currentrow == menuoptions.size() - 1 &&
                multiselect == true) {
       currentrow++;
-      if(currentcol >= menuoptions[currentrow].size()){
+      if (currentcol >= menuoptions[currentrow].size()) {
         currentcol = menuoptions[currentrow].size() - 1;
       }
     }
@@ -95,8 +95,8 @@ std::vector<std::string> appareo::curse::Menu::RunMenu() {
             selections.push_back(menuoptions[currentrow][currentcol]);
           } else if (selectcheck[currentrow][currentcol] == true) {
             selectcheck[currentrow][currentcol] = false;
-            for(int i = 0 ; i < selections.size(); i++){
-              if(selections[i] == menuoptions[currentrow][currentcol]){
+            for (int i = 0; i < selections.size(); i++) {
+              if (selections[i] == menuoptions[currentrow][currentcol]) {
                 selections.erase(selections.begin() + i);
               }
             }
@@ -126,7 +126,7 @@ void appareo::curse::Menu::Update() {
       }
       int posx, posy;
       posy = (i * (height / menuoptions.size())) +
-             (((height / menuoptions.size()) - 1) / 2);
+             (((height / menuoptions.size()) - 1) / 2) + 1;
       posx = (j * (width / menuoptions[i].size())) +
              (((width / menuoptions[i].size()) - menuoptions[i][j].size()) / 2);
       mvwprintw(menuwin.windowpointer, posy, posx, menuoptions[i][j].c_str());

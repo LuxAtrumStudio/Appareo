@@ -1,10 +1,10 @@
-#include <form.h>
+#include "curse_headers.h"
+#include "form.h"
 #include <ncurses.h>
+#include <pessum.h>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <pessum.h>
-#include "curse_headers.h"
 
 void appareo::curse::Form::CreateForm(std::vector<Field> fields,
                                       std::string name, int width, int height,
@@ -33,6 +33,20 @@ std::vector<appareo::curse::Field> appareo::curse::Form::RunForm() {
     Update();
     int input = 0;
     input = wgetch(formwin.windowpointer);
+    if (input == 10 && formfields[currentfield].type == 6) {
+      formfields[currentfield].sval = NewMenu(
+          formfields[currentfield].options, formfields[currentfield].name,
+          formwin.width - 2, formwin.height - 2, formwin.posx + 1,
+          formwin.posy + 1, false)[0];
+      for (int i = 0; i < formfields[currentfield].options.size(); i++) {
+        if (formfields[currentfield].sval ==
+            formfields[currentfield].options[i]) {
+          formfields[currentfield].ival = i;
+          break;
+        }
+      }
+      formwin.Update();
+    }
     if (input == KEY_UP) {
       if (currentfield > 0) {
         currentfield--;

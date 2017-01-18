@@ -1,8 +1,8 @@
 #ifndef APPAREO_FILES_CURSE_FORM_H_
 #define APPAREO_FILES_CURSE_FORM_H_
+#include "curse_headers.h"
 #include <ncurses.h>
 #include <vector>
-#include "curse_headers.h"
 namespace appareo {
 namespace curse {
 struct Field {
@@ -12,16 +12,17 @@ struct Field {
   double dval;
   bool bval;
   std::string sval;
+  std::vector<std::string> options;
 };
 class Form {
- public:
+public:
   void CreateForm(std::vector<Field> fields, std::string name = "",
                   int width = -1, int height = -1, int posx = -1,
                   int posy = -1);
   std::vector<Field> RunForm();
   void TerminateForm();
 
- private:
+private:
   int currentfield, max, curs;
   std::string name;
   std::vector<Field> formfields;
