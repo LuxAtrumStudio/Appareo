@@ -1,14 +1,14 @@
 #ifndef APPAREO_FILES_CURSE_CURSE_CORE_H_
 #define APPAREO_FILES_CURSE_CURSE_CORE_H_
-#include <vector>
-#include "window.h"
 #include "form.h"
+#include "window.h"
+#include <vector>
 namespace appareo {
 namespace curse {
 extern int logloc;
 extern int scrwidth, scrheight;
 extern std::vector<Window> windows;
-extern Window* win;
+extern Window *win;
 void InitializeNcurses();
 void TerminateNCurses();
 void Frame();
@@ -24,7 +24,8 @@ std::vector<std::string> NewMenu(std::vector<std::vector<std::string>> options,
                                  int height = -1, int posx = -1, int posy = -1,
                                  bool multi = false);
 std::vector<Field> NewForm(std::vector<Field> fields, std::string name = "",
-                int width = -1, int height = -1, int posx = -1, int posy = -1);
+                           int width = -1, int height = -1, int posx = -1,
+                           int posy = -1);
 }
 }
 #endif

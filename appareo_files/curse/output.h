@@ -1,7 +1,7 @@
 #ifndef APPAREO_FILES_CURSE_OUTPUT_H_
 #define APPAREO_FILES_CURSE_OUTPUT_H_
-#include <vector>
 #include <string>
+#include <vector>
 namespace appareo {
 namespace curse {
 namespace out {
@@ -38,7 +38,8 @@ extern int logloc;
 extern int boundwin;
 void InitializeOutput();
 void PrintC(std::string str, int row = -1, int col = -1, int window = boundwin);
-void Print(std::string str, int row = -1, int col = -1, int window = boundwin, bool autoupdate = true);
+void Print(std::string str, int row = -1, int col = -1, int window = boundwin,
+           bool autoupdate = true);
 void PrintZ(std::string str, int zone = 1, int window = boundwin);
 void NewLine(int window = boundwin);
 void InitializeColor();

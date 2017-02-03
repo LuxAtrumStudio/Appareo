@@ -1,10 +1,10 @@
+#include "curse_core.h"
+#include "output.h"
+#include "window.h"
 #include <ncurses.h>
 #include <pessum.h>
 #include <string>
 #include <vector>
-#include "curse_core.h"
-#include "output.h"
-#include "window.h"
 
 namespace appareo {
 namespace curse {
@@ -37,18 +37,21 @@ void appareo::curse::out::PrintC(std::string str, int row, int col,
   }
 }
 
-void appareo::curse::out::Print(std::string str, int row, int col, int window, bool autoupdate) {
+void appareo::curse::out::Print(std::string str, int row, int col, int window,
+                                bool autoupdate) {
   if (row == -1) {
     row = windows[window].cursy;
   }
   if (col == -1) {
     col = windows[window].cursx;
     windows[window].cursx += str.size();
-    if(windows[window].cursx >= windows[window].width && windows[window].border == false){
+    if (windows[window].cursx >= windows[window].width &&
+        windows[window].border == false) {
       windows[window].cursx = 0;
       windows[window].cursy++;
     }
-    if(windows[window].cursx >= windows[window].width - 1 && windows[window].border == true){
+    if (windows[window].cursx >= windows[window].width - 1 &&
+        windows[window].border == true) {
       windows[window].cursx = 1;
       windows[window].cursy++;
     }
@@ -57,54 +60,54 @@ void appareo::curse::out::Print(std::string str, int row, int col, int window, b
     pessum::logging::LogLoc(pessum::logging::WARNING, "Failed to print string",
                             logloc, "Print");
   }
-  if(autoupdate == true){
-  windows[window].Update();
-}
+  if (autoupdate == true) {
+    windows[window].Update();
+  }
 }
 void appareo::curse::out::PrintZ(std::string str, int zone, int window) {
   int length = str.size(), width = windows[window].width,
       height = windows[window].height;
   bool border = windows[window].border;
   int row = 0, col = 0;
-  if(zone == 1 || zone == 2 || zone == 3){
+  if (zone == 1 || zone == 2 || zone == 3) {
     row = 0;
-    if(border == true){
+    if (border == true) {
       row++;
     }
   }
-  if(zone == 4 || zone == 5||zone == 6){
+  if (zone == 4 || zone == 5 || zone == 6) {
     row = height / 2;
   }
-  if(zone == 7 || zone == 8 || zone == 9){
+  if (zone == 7 || zone == 8 || zone == 9) {
     row = height;
-    if(border == true){
-      row-=2;
+    if (border == true) {
+      row -= 2;
     }
   }
-  if(zone == 1 | zone == 4 || zone == 7){
+  if (zone == 1 | zone == 4 || zone == 7) {
     col = 0;
-    if(border == true){
+    if (border == true) {
       col++;
     }
   }
-  if(zone == 2 || zone == 5 || zone == 8){
+  if (zone == 2 || zone == 5 || zone == 8) {
     col = (width - length) / 2;
   }
-  if(zone== 3 || zone == 6 || zone == 9){
+  if (zone == 3 || zone == 6 || zone == 9) {
     col = width - length;
-    if(border == true){
+    if (border == true) {
       col--;
     }
   }
   Print(str, row, col, window);
 }
 
-void appareo::curse::out::NewLine(int window){
-  if(windows[window].border == false){
+void appareo::curse::out::NewLine(int window) {
+  if (windows[window].border == false) {
     windows[window].cursx = 0;
     windows[window].cursy++;
   }
-  if(windows[window].border == true){
+  if (windows[window].border == true) {
     windows[window].cursx = 1;
     windows[window].cursy++;
   }

@@ -1,10 +1,10 @@
-#include <pessum.h>
 #include "appareo_core.h"
 #include "curse/curse_core.h"
+#include <pessum.h>
 
-void appareo::InitializeAppareo() {
+void appareo::InitializeAppareo(bool devmode) {
   srand(time(NULL));
-  pessum::InitializePessumComponents();
+  pessum::InitializePessumComponents(devmode);
   curse::InitializeNcurses();
 }
 

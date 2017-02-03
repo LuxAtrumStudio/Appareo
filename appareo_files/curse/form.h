@@ -1,7 +1,8 @@
 #ifndef APPAREO_FILES_CURSE_FORM_H_
 #define APPAREO_FILES_CURSE_FORM_H_
-#include "curse_headers.h"
+#include "window.h"
 #include <ncurses.h>
+#include <string>
 #include <vector>
 namespace appareo {
 namespace curse {
