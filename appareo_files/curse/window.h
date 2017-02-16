@@ -1,5 +1,6 @@
 #ifndef APPAREO_FILES_CURSE_WINDOW_H_
 #define APPAREO_FILES_CURSE_WINDOW_H_
+#include "output.h"
 #include <ncurses.h>
 #include <string>
 namespace appareo {
@@ -15,6 +16,7 @@ public:
                     int winheight = -1, int winposx = -1, int winposy = -1,
                     bool winborder = true, bool wintitle = false);
   void TerminateWindow();
+  void SetBackground(out::Attributes attr = out::NORMAL);
   void Update();
   void Clear();
 

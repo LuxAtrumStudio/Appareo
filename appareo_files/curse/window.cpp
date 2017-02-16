@@ -1,8 +1,8 @@
+#include "curse_core.h"
+#include "window.h"
 #include <ncurses.h>
 #include <pessum.h>
 #include <string>
-#include "curse_core.h"
-#include "window.h"
 
 void appareo::curse::Window::CreateWindow(std::string winname, int winwidth,
                                           int winheight, int winposx,
@@ -66,6 +66,24 @@ void appareo::curse::Window::TerminateWindow() {
   pessum::logging::LogLoc(pessum::logging::SUCCESS,
                           "Terminated window \"" + name + "\"", logloc,
                           "TerminateWindow");
+}
+
+void appareo::curse::Window::SetBackground(out::Attributes attr) {
+  int color = -1;
+  if (attr > 10 && attr < 19) {
+    if (color == -1) {
+      color++;
+    }
+    color += (attr - 11);
+  } else if (attr > 18 && attr < 27) {
+    if (color == -1) {
+      color++;
+    }
+    color += (attr - 19) * 10;
+  }
+  if (color != -1) {
+    wbkgd(windowpointer, COLOR_PAIR(color));
+  }
 }
 
 void appareo::curse::Window::Update() {
