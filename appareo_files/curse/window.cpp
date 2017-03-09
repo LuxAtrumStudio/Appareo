@@ -37,17 +37,17 @@ void appareo::curse::Window::CreateWindow(std::string winname, int winwidth,
     cursx++;
     cursy++;
   }
-  logloc = pessum::logging::AddLogLocation("appareo_files/curse/window.cpp/[" +
-                                           name + "]");
+  // logloc = pessum::logging::AddLogLocation("appareo_files/curse/window.cpp/["
+  // +
+  //                                          name + "]");
   windowpointer = newwin(height, width, posy, posx);
   if (windowpointer != NULL) {
-    pessum::logging::LogLoc(pessum::logging::SUCCESS,
-                            "Creaded window \"" + name + "\"", logloc,
-                            "CreateWindow");
+    // pessum::logging::LogLoc(pessum::logging::SUCCESS,
+    //                         "Creaded window \"" + name + "\"", logloc,
+    //                         "CreateWindow");
   } else {
-    pessum::logging::LogLoc(pessum::logging::ERROR,
-                            "Failed to create window \"" + name + "\"", logloc,
-                            "CreateWindow");
+    pessum::logging::Log("e", "Failed to create window \"" + name + "\"",
+                         "appareo/curse/window", "CreateWindow");
   }
   if (border == true) {
     box(windowpointer, 0, 0);
@@ -63,9 +63,9 @@ void appareo::curse::Window::TerminateWindow() {
   wclear(windowpointer);
   wrefresh(windowpointer);
   delwin(windowpointer);
-  pessum::logging::LogLoc(pessum::logging::SUCCESS,
-                          "Terminated window \"" + name + "\"", logloc,
-                          "TerminateWindow");
+  // pessum::logging::LogLoc(pessum::logging::SUCCESS,
+  //                         "Terminated window \"" + name + "\"", logloc,
+  //                         "TerminateWindow");
 }
 
 void appareo::curse::Window::SetBackground(out::Attributes attr) {
@@ -112,9 +112,10 @@ void appareo::curse::Window::Clear() {
 }
 
 std::string appareo::curse::Window::GenName() {
-  std::string name;
-  std::vector<std::string> names =
-      pessum::luxreader::LoadLuxListFile("resources/names.lux");
-  name = names[rand() % names.size()];
-  return (name);
+  // std::string name;
+  // std::vector<std::string> names =
+  // pessum::luxreader::LoadLuxFile("resources/names.lux");
+  // name = names[rand() % names.size()];
+  // return (name);
+  return ("NULL");
 }

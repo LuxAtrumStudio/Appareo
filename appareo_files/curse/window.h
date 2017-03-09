@@ -21,7 +21,6 @@ public:
   void Clear();
 
 private:
-  int logloc;
   std::string GenName();
 };
 }

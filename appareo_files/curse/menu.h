@@ -1,12 +1,12 @@
 #ifndef APPAREO_FILES_CURSE_MENU_H_
 #define APPAREO_FILES_CURSE_MENU_H_
+#include "window.h"
 #include <string>
 #include <vector>
-#include "window.h";
 namespace appareo {
 namespace curse {
 class Menu {
- public:
+public:
   void CreateMenu(std::vector<std::string> options, std::string name = "",
                   int width = -1, int height = -1, int posx = -1, int posy = -1,
                   bool multi = false);
@@ -16,7 +16,7 @@ class Menu {
   std::vector<std::string> RunMenu();
   void TerminateMenu();
 
- private:
+private:
   std::vector<std::vector<std::string>> menuoptions;
   std::vector<std::vector<bool>> selectcheck;
   std::vector<std::string> selections;

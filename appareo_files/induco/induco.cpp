@@ -1,10 +1,10 @@
-#include <cmath>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <sstream>
 #include "../curse/curse_headers.h"
 #include "induco.h"
+#include <cmath>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 namespace appareo {
 namespace induco {
 struct termios t;
@@ -33,9 +33,9 @@ void appareo::induco::UpdateProgressBar(double percent) {
     lastbar = bar.size();
     curse::out::SetAtt({curse::out::WHITE_BACK}, barwin);
     curse::out::Print(bar, 1, 1, barwin);
-    for(int i = 0; i < perc.size(); i++){
-      if(col > bar.size() + 1){
-      curse::out::SetAtt({curse::out::NORMAL}, barwin);
+    for (int i = 0; i < perc.size(); i++) {
+      if (col > bar.size() + 1) {
+        curse::out::SetAtt({curse::out::NORMAL}, barwin);
       }
       std::stringstream ss;
       ss << perc[i];
@@ -144,8 +144,7 @@ double appareo::induco::Timer(bool startb) {
   return (0);
 }
 
-void appareo::induco::Line(int pos, bool vertical){
-  if(vertical == false){
-    
+void appareo::induco::Line(int pos, bool vertical) {
+  if (vertical == false) {
   }
 }

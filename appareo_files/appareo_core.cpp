@@ -4,11 +4,11 @@
 
 void appareo::InitializeAppareo(bool devmode) {
   srand(time(NULL));
-  pessum::InitializePessumComponents(devmode);
+  pessum::InitializePessum(devmode);
   curse::InitializeNcurses();
 }
 
 void appareo::TerminateAppareo() {
   curse::TerminateNCurses();
-  pessum::TerminatePessumComponents();
+  pessum::TerminatePessum();
 }

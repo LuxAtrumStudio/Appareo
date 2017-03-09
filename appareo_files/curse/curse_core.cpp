@@ -1,14 +1,14 @@
+#include "curse_headers.h"
 #include <ncurses.h>
 #include <pessum.h>
 #include <vector>
-#include "curse_headers.h"
 
 namespace appareo {
 namespace curse {
 int logloc;
 int scrwidth, scrheight;
 std::vector<Window> windows;
-Window* win;
+Window *win;
 }
 }
 
@@ -21,8 +21,8 @@ void appareo::curse::InitializeNcurses() {
   getmaxyx(stdscr, scrheight, scrwidth);
   noecho();
   curs_set(0);
-  pessum::logging::LogLoc(pessum::logging::SUCCESS, "Initialized Ncurses",
-                          logloc, "InitializeNcurses");
+  // pessum::logging::Log("s", "Initialized Ncurses", logloc,
+  // "InitializeNcurses");
   out::InitializeOutput();
   out::InitializeColor();
   refresh();
@@ -34,14 +34,15 @@ void appareo::curse::TerminateNCurses() {
   }
   refresh();
   endwin();
-  pessum::logging::LogLoc(pessum::logging::SUCCESS, "Terminated Ncurses",
-                          logloc, "TerminateNCurses");
+  // pessum::logging::LogLoc(pessum::logging::SUCCESS, "Terminated Ncurses",
+  //                         logloc, "TerminateNCurses");
 }
 
 void appareo::curse::Frame() {
   clear();
   refresh();
-  for (int i = 0; i < windows.size(); i++) windows[i].Update();
+  for (int i = 0; i < windows.size(); i++)
+    windows[i].Update();
 }
 
 void appareo::curse::InitializeWindow() {
@@ -50,7 +51,7 @@ void appareo::curse::InitializeWindow() {
   win = &windows[windows.size() - 1];
 }
 
-void appareo::curse::TerminateWindow(int window){
+void appareo::curse::TerminateWindow(int window) {
   windows[window].TerminateWindow();
   windows.erase(windows.begin() + window);
 }
@@ -61,15 +62,14 @@ int appareo::curse::FindWindow(std::string name) {
       return (i);
     }
   }
-  pessum::logging::LogLoc(pessum::logging::WARNING,
-                          "No window named \"" + name + "\"", logloc,
-                          "FindWindow");
+  pessum::logging::Log("w", "No window named \"" + name + "\"",
+                       "appareo/curse/curse_core/", "FindWindow");
   return (0);
 }
 
-std::vector<std::string> appareo::curse::NewMenu(
-    std::vector<std::string> options, std::string name, int width,
-    int height, int posx, int posy, bool multi) {
+std::vector<std::string>
+appareo::curse::NewMenu(std::vector<std::string> options, std::string name,
+                        int width, int height, int posx, int posy, bool multi) {
   std::vector<std::string> output;
   Menu newmenu;
   newmenu.CreateMenu(options, name, width, height, posx, posy, multi);
@@ -78,10 +78,10 @@ std::vector<std::string> appareo::curse::NewMenu(
   return (output);
 }
 
-std::vector<std::string> appareo::curse::NewMenu(
-    std::vector<std::vector<std::string>> options, std::string name,
-    int width, int height, int posx, int posy,
-    bool multi) {
+std::vector<std::string>
+appareo::curse::NewMenu(std::vector<std::vector<std::string>> options,
+                        std::string name, int width, int height, int posx,
+                        int posy, bool multi) {
   std::vector<std::string> output;
   Menu newmenu;
   newmenu.CreateMenu(options, name, width, height, posx, posy, multi);
@@ -90,12 +90,11 @@ std::vector<std::string> appareo::curse::NewMenu(
   return (output);
 }
 
-std::vector<appareo::curse::Field> appareo::curse::NewForm(std::vector<Field> fields,
-                                           std::string name,
-                                           int width, int height,
-                                           int posx, int posy) {
+std::vector<appareo::curse::Field>
+appareo::curse::NewForm(std::vector<Field> fields, std::string name, int width,
+                        int height, int posx, int posy) {
   Form newform;
-  newform.CreateForm(fields, name,width, height, posx, posy);
+  newform.CreateForm(fields, name, width, height, posx, posy);
   fields = newform.RunForm();
   newform.TerminateForm();
   return (fields);

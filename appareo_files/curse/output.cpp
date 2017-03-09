@@ -17,9 +17,8 @@ int boundwin;
 
 void appareo::curse::out::InitializeOutput() {
   boundwin = 0;
-  logloc = pessum::logging::AddLogLocation("appareo_files/curse/output.cpp/");
-  pessum::logging::LogLoc(pessum::logging::SUCCESS, "Initialized output",
-                          logloc, "InitializeOutput");
+  // pessum::logging::Log("s", "Initialized output",
+  //                         logloc, "InitializeOutput");
 }
 
 void appareo::curse::out::PrintC(std::string str, int row, int col,
@@ -57,8 +56,8 @@ void appareo::curse::out::Print(std::string str, int row, int col, int window,
     }
   }
   if (mvwprintw(windows[window].windowpointer, row, col, str.c_str()) == ERR) {
-    pessum::logging::LogLoc(pessum::logging::WARNING, "Failed to print string",
-                            logloc, "Print");
+    pessum::logging::Log("w", "Failed to print string", "appareo/curse/output/",
+                         "Print");
   }
   if (autoupdate == true) {
     windows[window].Update();
@@ -115,14 +114,12 @@ void appareo::curse::out::NewLine(int window) {
 
 void appareo::curse::out::InitializeColor() {
   if (has_colors() == false) {
-    pessum::logging::LogLoc(pessum::logging::WARNING,
-                            "Your console does not support colors", logloc,
-                            "InitializeColor");
+    pessum::logging::Log("w", "Your console does not support colors",
+                         "appareo/curse/output", "InitializeColor");
   } else {
     if (can_change_color() == false) {
-      pessum::logging::LogLoc(pessum::logging::WARNING,
-                              "Your console does not support costom colors",
-                              logloc, "InitializeColor");
+      pessum::logging::Log("w", "Your console does not support costom colors",
+                           "appareo/curse/output", "InitializeColor");
     }
     start_color();
     for (int i = 0; i < 8; i++) {
@@ -130,8 +127,9 @@ void appareo::curse::out::InitializeColor() {
         init_pair((short)(i * 10 + j), (short)j, (short)i);
       }
     }
-    pessum::logging::LogLoc(pessum::logging::SUCCESS, "Initialized colors",
-                            logloc, "InitializeColor");
+    // pessum::logging::Log(pessum::logging::SUCCESS, "Initialized colors",
+    // logloc,
+    //                      "InitializeColor");
   }
 }
 
