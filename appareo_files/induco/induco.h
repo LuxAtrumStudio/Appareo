@@ -1,10 +1,10 @@
 #ifndef INDUCO_H_
 #define INDUCO_H_
+#include "../curse/curse_headers.h"
 #include <string>
 #include <termios.h>
 #include <vector>
-#include "../curse/curse_headers.h"
-namespace appareo{
+namespace appareo {
 namespace induco {
 // Used to remove terminal echo of key press
 extern struct termios t;

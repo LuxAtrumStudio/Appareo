@@ -43,7 +43,7 @@ void Print(std::string str, int row = -1, int col = -1, int window = boundwin,
 void PrintZ(std::string str, int zone = 1, int window = boundwin);
 void NewLine(int window = boundwin);
 void InitializeColor();
-void SetAtt(std::vector<Attributes> attrs = {NORMAL}, int window = boundwin);
+void SetAtt(std::vector<int> attrs = {NORMAL}, int window = boundwin);
 void BindWindow(int index);
 void BindWindow(std::string name);
 }

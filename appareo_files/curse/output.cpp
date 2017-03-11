@@ -133,7 +133,7 @@ void appareo::curse::out::InitializeColor() {
   }
 }
 
-void appareo::curse::out::SetAtt(std::vector<Attributes> attrs, int window) {
+void appareo::curse::out::SetAtt(std::vector<int> attrs, int window) {
   wattrset(windows[window].windowpointer, A_NORMAL);
   int color = -1;
   for (int i = 0; i < attrs.size(); i++) {
